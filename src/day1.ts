@@ -25,13 +25,13 @@ function day1Part2(data: number[]): number {
 console.log("Advent of Code 2022: Day 1");
 
 // Validate with the test case
-const day1TestData = prepareData(await readFile('./data/day1.0.txt'));
-const day1TestAnswer = day1Part1(day1TestData);
-console.assert(day1TestAnswer === 24000);
+const testData = prepareData(await readFile('./data/day1.0.txt'));
+const testAnswer = day1Part1(testData);
+console.assert(testAnswer === 24000);
 
-const day1Exercise1Data = await readFile('./data/day1.1.txt');
-const day1Exercise1Answer = day1Part1(prepareData(day1Exercise1Data));
-console.log(`Day 1 Part 1: Answer is ${day1Exercise1Answer}.`);
+const exercise1Data = await readFile('./data/day1.1.txt');
+const exercise1Answer = day1Part1(prepareData(exercise1Data));
+console.log(`Day 1 Part 1: Answer is ${exercise1Answer}.`);
 
-const day1Exercise2Answer = day1Part2(prepareData(day1Exercise1Data));
-console.log(`Day 1 Part 2: Answer is ${day1Exercise2Answer}.`);
+const exercise2Answer = day1Part2(prepareData(exercise1Data));
+console.log(`Day 1 Part 2: Answer is ${exercise2Answer}.`);
