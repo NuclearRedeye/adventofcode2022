@@ -1,5 +1,3 @@
-import { LargeNumberLike } from 'crypto';
-import { run } from 'node:test';
 import {readFile} from './utils.js';
 
 const priorities = new Map<string, number>([
@@ -52,22 +50,19 @@ function prepareData(data: string[]): Rucksack[] {
   return retVal;
 };
 
-function day3Part1(data: Rucksack[]): number { 
+function exercise1(data: Rucksack[]): number { 
   let retVal = 0;
 
   for (const rucksack of data) {
     for (const item of rucksack.compartment1) {
       if (rucksack.compartment2.includes(item)) {
-        const key = item.toLowerCase();
-        if (key !== undefined) {
-          const value = priorities.get(key);
-          if (value !== undefined) {
-            if (item.toUpperCase() === item) {
-              retVal += 26
-            };
-            retVal += value;
-            break;
-          }
+        const value = priorities.get(item.toLowerCase());
+        if (value !== undefined) {
+          if (item.toUpperCase() === item) {
+            retVal += 26
+          };
+          retVal += value;
+          break;
         }
       }
     }
@@ -75,7 +70,7 @@ function day3Part1(data: Rucksack[]): number {
   return retVal;
 }
 
-function day3Part2(data: Rucksack[]): number { 
+function exercise2(data: Rucksack[]): number { 
   let retVal = 0;
 
   for (let i = 0; i < data.length; i+=3) {
@@ -85,16 +80,13 @@ function day3Part2(data: Rucksack[]): number {
 
     for (const item of rucksack1.contents) {
       if (rucksack2.contents.includes(item) && rucksack3.contents.includes(item)) {
-        const key = item.toLowerCase();
-        if (key !== undefined) {
-          const value = priorities.get(key);
-          if (value !== undefined) {
-            if (item.toUpperCase() === item) {
-              retVal += 26
-            };
-            retVal += value;
-            break;
-          }
+        const value = priorities.get(item.toLowerCase());
+        if (value !== undefined) {
+          if (item.toUpperCase() === item) {
+            retVal += 26
+          };
+          retVal += value;
+          break;
         }
       }
     }
@@ -102,19 +94,24 @@ function day3Part2(data: Rucksack[]): number {
   return retVal;
 }
 
-console.log("Advent of Code 2022: Day 2");
+console.log(`Advent of Code 2022: Day 3`);
 
-// Validate with the test case
+// Prepare the Data
 const testData = prepareData(await readFile('./data/day3.0.txt'));
-const testAnswer = day3Part1(testData);
+const exerciseData = await readFile('./data/day3.1.txt');
+
+// Validate exercise 1 test case
+const testAnswer = exercise1(testData);
 console.assert(testAnswer === 157);
 
-const exercise1Data = await readFile('./data/day3.1.txt');
-const exercise1Answer = day3Part1(prepareData(exercise1Data));
-console.log(`Day 3 Part 1: Answer is ${exercise1Answer}.`);
+// Answer exercise 1 
+const exercise1Answer = exercise1(prepareData(exerciseData));
+console.log(`- Exercise 1: Answer is ${exercise1Answer}.`);
 
-const testAnswer2 = day3Part2(testData);
+// Validate exercise 2 test case
+const testAnswer2 = exercise2(testData);
 console.assert(testAnswer2 === 70);
 
-const exercise2Answer = day3Part2(prepareData(exercise1Data));
-console.log(`Day 3 Part 2: Answer is ${exercise2Answer}.`);
+// Answer exercise 2
+const exercise2Answer = exercise2(prepareData(exerciseData));
+console.log(`- Exercise 2: Answer is ${exercise2Answer}.`);
