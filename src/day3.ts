@@ -1,5 +1,7 @@
 import {readFile} from './utils.js';
 
+const day = 3;
+
 const priorities = new Map<string, number>([
   ['a', 1],
   ['b', 2],
@@ -94,23 +96,23 @@ function exercise2(data: Rucksack[]): number {
   return retVal;
 }
 
-console.log(`Advent of Code 2022: Day 3`);
+console.log(`Advent of Code 2022: Day ${day}`);
 
 // Prepare the Data
-const testData = prepareData(await readFile('./data/day3.0.txt'));
-const exerciseData = await readFile('./data/day3.1.txt');
+const testData = prepareData(await readFile(`./data/day${day}.test.txt`));
+const exerciseData = await readFile(`./data/day${day}.exercise.txt`);
 
 // Validate exercise 1 test case
-const testAnswer = exercise1(testData);
-console.assert(testAnswer === 157);
+const test1Answer = exercise1(testData);
+console.assert(test1Answer === 157);
 
 // Answer exercise 1 
 const exercise1Answer = exercise1(prepareData(exerciseData));
 console.log(`- Exercise 1: Answer is ${exercise1Answer}.`);
 
 // Validate exercise 2 test case
-const testAnswer2 = exercise2(testData);
-console.assert(testAnswer2 === 70);
+const test2Answer = exercise2(testData);
+console.assert(test2Answer === 70);
 
 // Answer exercise 2
 const exercise2Answer = exercise2(prepareData(exerciseData));
