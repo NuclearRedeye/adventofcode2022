@@ -1,5 +1,7 @@
 import {readFile} from './utils.js';
 
+const day = 2;
+
 enum Move {
   UNKNOWN = 0,
   ROCK = 1,
@@ -52,7 +54,7 @@ function prepareData(data: string[]): Game[] {
   return retVal;
 };
 
-function day2Part1(data: Game[]): Score { 
+function exercise1(data: Game[]): Score { 
   const retVal: Score = {
     player1: 0,
     player2: 0
@@ -88,7 +90,7 @@ function day2Part1(data: Game[]): Score {
   return retVal;
 }
 
-function day2Part2(data: Game[]): Score { 
+function exercise2(data: Game[]): Score { 
   const retVal: Score = {
     player1: 0,
     player2: 0
@@ -123,16 +125,24 @@ function day2Part2(data: Game[]): Score {
   return retVal;
 }
 
-console.log("Advent of Code 2022: Day 2");
+console.log(`Advent of Code 2022: Day ${day}`);
 
-// Validate with the test case
-const testData = prepareData(await readFile('./data/day2.0.txt'));
-const testAnswer = day2Part1(testData);
-console.assert(testAnswer.player2 === 15);
+// Prepare the Data
+const testData = prepareData(await readFile(`./data/day${day}.test.txt`));
+const exerciseData = await readFile(`./data/day${day}.exercise.txt`);
 
-const exercise1Data = await readFile('./data/day2.1.txt');
-const exercise1Answer = day2Part1(prepareData(exercise1Data));
-console.log(`Day 2 Part 1: Answer is ${exercise1Answer.player2}.`);
+// Validate exercise 1 test case
+const test1Answer = exercise1(testData);
+console.assert(test1Answer.player2 === 15);
 
-const exercise2Answer = day2Part2(prepareData(exercise1Data));
-console.log(`Day 2 Part 2: Answer is ${exercise2Answer.player2}.`);
+// Answer exercise 1 
+const exercise1Answer = exercise1(prepareData(exerciseData));
+console.log(`Day 1 Part 1: Answer is ${exercise1Answer.player2}.`);
+
+// Validate exercise 2 test case
+const test2Answer = exercise2(testData);
+console.assert(test2Answer.player2 === 12);
+
+// Answer exercise 2
+const exercise2Answer = exercise2(prepareData(exerciseData));
+console.log(`Day 1 Part 2: Answer is ${exercise2Answer.player2}.`);
